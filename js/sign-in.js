@@ -1,5 +1,4 @@
 // JavaScript File
-// JavaScript File
 
 function signInButton() {
   // sign-in to AWS Cognito
