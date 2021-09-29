@@ -6,27 +6,30 @@
     <meta name="keywords" content="HTML,CSS,XML,JavaScript">
     <meta name="author" content="Mr. Coxall, Jaeyoon Lee">
     <meta name="date" content="Sep 2021">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     
     <!--Google's MDL-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-green.min.css" /> 
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     
+    <link rel="stylesheet" type="text/css" href="css/home.css" />
+    <script src="js/home.js"></script>
     <title>Chocolates</title>
   </head>
   
   <body>
-    
-		<div class="container">
-      <div>
-        <h2>About</h2>
-        <div id='about'>
-          <p>...</p>
-        </div>
-      </div>
-		</div>
-    
+    <div>
+      <!--<p id="demo">Maps</p>-->
+      <!--The div element for the map -->
+      <div id="map"></div>
+  
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script
+        src="https://maps.googleapis.com/maps/api/js?key=YOUT_KEY&callback=initMap&libraries=&v=weekly"
+        async
+      ></script>
+    </div>
   </body>
   
 </html>
