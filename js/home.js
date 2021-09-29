@@ -1,12 +1,29 @@
 // JavaScript File
+var x = document.getElementById("demo");
 
-function loadFriendList(friend_list) {
-  for (const friend of friend_list) {
-    var img = document.createElement("img");
-    var friend_name = document.createElement("div");
-    var node = document.createElement("LI");
-    var textnode = document.createTextNode(friend['name']);
-    friend_name.appendChild(textnode);
-    document.getElementById("friend-list").appendChild(node);
+function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: -34.397, lng: 150.644 },
+    zoom: 6,
+  });
+    // Try HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        map.setCenter(pos);
+        const marker = new google.maps.Marker({
+          position: pos,
+          map: map,
+        });
+      },
+    );
+  } else {
+    // Browser doesn't support Geolocation
+    alert("Location information is unavailable.")
   }
 }
+
