@@ -1,8 +1,54 @@
 
+function editEvent() {
+  alert("EDIT WINDOW");
+}
+
+
+function displayOnMaps() {
+  
+}
+
+
+function genInfoWindow(info, map) {
+  const contentString =
+    '<div style="padding: 5%;">' +
+      '<div style="display: flex; justify-content: space-between;">' +
+        '<h1 id="title" style="margin: 0 0 12px; text-align: left;">' + info.eventName + '</h1>' +
+        '<button class="mdl-button mdl-js-button mdl-button--primary" onclick="editEvent()">Edit</button>' +
+      "</div>" +
+      "<div>" +
+        '<p style="margin-bottom: 0;">' + info.date + '</p>' +
+        '<p style="margin-bottom: 0;">' + info.time + '</p>' +
+        '<p style="margin-top: 16px;">' + info.note + '</p>' +
+      "</div>" +
+    "</div>";
+    
+  const infowindow = new google.maps.InfoWindow({
+    content: contentString,
+  });
+  
+  const custonMarker = new google.maps.Marker({
+    position: info.eventLoc,
+    map,
+    // title: "Your event",
+  });
+
+  custonMarker.addListener("click", () => {
+    infowindow.open({
+      anchor: custonMarker,
+      map,
+      shouldFocus: false,
+    });
+  });
+}
+
+
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 45.397545, lng: -75.689046},
     zoom: 12,
+    mapId: '8b356f861117194c',
+    disableDefaultUI: true,
   });
   
     // Try HTML5 geolocation.
@@ -28,66 +74,20 @@ function initMap() {
     alert("Location information is unavailable.")
   }
   
-  const appointmentLoc = { lat: 45.28503536817652, lng: -75.73935745395954};
-  const date = "Oct 4, 2021";
-  const eventName = "IELTS";
+  const eventInfo = [{
+    eventLoc: { lat: 45.28503536817652, lng: -75.73935745395954},
+    eventName: "TITLE",
+    date: "Oct 4, 2021",
+    time: "12:34 PM",
+    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae lacus ac augue auctor hendrerit. Ut imperdiet mattis scelerisque. Curabitur vitae."
+  }];
+  genInfoWindow(eventInfo[0], map);
+  
+  // const addBtnDiv = document.createElement("div");
+  const addEventBtn = document.getElementById("add-event");
+  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(addEventBtn);
+  
+  // addBtnDiv.appendChild(addEventBtn);
   
   
-  const contentString =
-    '<div id="content">' +
-    '<div id="siteNotice">' +
-    "</div>" +
-    '<h1 id="firstHeading" class="firstHeading"> ' + eventName + '</h1>' +
-    '<div id="bodyContent">' +
-    '<p>' + date + '</p>'
-    // "<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large " +
-    // "sandstone rock formation in the southern part of the " +
-    // "Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) " +
-    // "south west of the nearest large town, Alice Springs; 450&#160;km " +
-    // "(280&#160;mi) by road. Kata Tjuta and Uluru are the two major " +
-    // "features of the Uluru - Kata Tjuta National Park. Uluru is " +
-    // "sacred to the Pitjantjatjara and Yankunytjatjara, the " +
-    // "Aboriginal people of the area. It has many springs, waterholes, " +
-    // "rock caves and ancient paintings. Uluru is listed as a World " +
-    // "Heritage Site.</p>" +
-    // '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
-    // "https://en.wikipedia.org/w/index.php?title=Uluru</a> " +
-    // "(last visited June 22, 2009).</p>" +
-    "</div>" +
-    "</div>";
-    
-    const infowindow = new google.maps.InfoWindow({
-      content: contentString,
-    });
-    
-    const custonMarker = new google.maps.Marker({
-      position: appointmentLoc,
-      map,
-      title: "Your appointment",
-    });
-  
-    custonMarker.addListener("click", () => {
-      infowindow.open({
-        anchor: custonMarker,
-        map,
-        shouldFocus: false,
-      });
-    });
-  
-  // const features = [
-  //   {
-  //     position: new google.maps.LatLng(45.397545, -75.689046),
-  //     size: new google.maps.Size(34,34)},
-  //     type: "info",
-  //   },
-  // ];
-  
-  // Create markers.
-  // for (let i = 0; i < features.length; i++) {
-  //   const marker = new google.maps.Marker({
-  //     position: features[i].position,
-  //     icon: icons[features[i].type].icon,
-  //     map: map,
-  //   });
-  // }
 }
