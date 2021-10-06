@@ -46,7 +46,7 @@ function signInButton() {
                 document.getElementById("logged-in").innerHTML = "You are logged in as: " + result[2].getValue();
 
                 // now auto redirect to profile page
-                window.location.replace("./profile.html");
+                window.location.replace("./index.html");
             });
 
     },

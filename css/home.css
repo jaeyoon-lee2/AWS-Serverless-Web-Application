@@ -1,40 +1,46 @@
 /* Set the size of the div element that contains the map */
 #map {
-  height: 400px;
-  /* The height is 400 pixels */
+  height: 600px;
   width: 100%;
-  /* The width is the width of the web page */
 }
 
-.customMarker {
-  position: absolute;
-  cursor: pointer;
-  background: #424242;
-  width: 100px;
-  height: 100px;
-  /* -width/2 */
-  margin-left: -50px;
-  /* -height + arrow */
-  margin-top: -110px;
-  border-radius: 50%;
-  padding: 0px;
+.demo-card-wide {
+  width: min-content;
+  padding: 1% 2.5%;
+  border-radius: 8px;
 }
 
-.customMarker:after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 40px;
-  border-width: 10px 10px 0;
-  border-style: solid;
-  border-color: #424242 transparent;
-  display: block;
-  width: 0;
+.mdl-textfield {
+  width: 100%;
 }
 
-.customMarker img {
-  width: 90px;
-  height: 90px;
-  margin: 5px;
-  border-radius: 50%;
+#formMap {
+  height: 120px;
+  width: 100%;
+  margin-bottom: 8px;
+  border-radius: 8px;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  max-width: 100%; /* Full width */
+  max-height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  padding: 10%;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  margin-top: 104px;
+  padding: 20px;
+  border: 1px solid #888;
+  max-width: 40vh; /* Could be more or less, depending on screen size */
 }
