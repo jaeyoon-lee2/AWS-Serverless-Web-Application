@@ -7,16 +7,14 @@ async function getUser(email_address) {
     const api_response = await fetch(api_url);
     const api_data = await(api_response).json();
     console.log(api_data);
+    console.log(email_address);
 
     const json_profile = JSON.parse(api_data['body']);
     const div_user_profile_email = document.getElementById('profile_email');
     const div_user_profile_name = document.getElementById('profile_name');
-    // const div_user_profile_last_name = document.getElementById('profile_last_name');
-    const div_user_profile_age = document.getElementById('profile_age');
     
     div_user_profile_email.innerHTML = json_profile['email'];
-    div_user_profile_name.innerHTML = json_profile['first_name'] + json_profile['last_name'];
-    div_user_profile_age.innerHTML = json_profile['age'];
+    div_user_profile_name.innerHTML = json_profile['name'];
   }
 
 function getUserAttributes() {
@@ -41,8 +39,8 @@ function getUserAttributes() {
           return;
         }
         // user email address
-        console.log(result[2].getValue());
-        getUser(result[2].getValue())
+        console.log(result);
+        getUser(result[3].getValue())
       });
 
     });

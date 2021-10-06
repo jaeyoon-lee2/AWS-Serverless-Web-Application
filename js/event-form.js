@@ -1,14 +1,15 @@
-function initAutocomplete() {
-  const map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -33.8688, lng: 151.2195 },
-    zoom: 13,
-    mapTypeId: "roadmap",
+function initEventForm() {
+  const map = new google.maps.Map(document.getElementById("formMap"), {
+    center: { lat: 45.397545, lng: -75.689046},
+    zoom: 12,
+    mapId: '8b356f861117194c',
+    disableDefaultUI: true,
   });
   // Create the search box and link it to the UI element.
   const input = document.getElementById("pac-input");
   const searchBox = new google.maps.places.SearchBox(input);
 
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+  // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
   // Bias the SearchBox results towards current map's viewport.
   map.addListener("bounds_changed", () => {
     searchBox.setBounds(map.getBounds());
@@ -57,6 +58,7 @@ function initAutocomplete() {
           position: place.geometry.location,
         })
       );
+      console.log(bounds);
       if (place.geometry.viewport) {
         // Only geocodes have viewport.
         bounds.union(place.geometry.viewport);
@@ -65,5 +67,6 @@ function initAutocomplete() {
       }
     });
     map.fitBounds(bounds);
+    console.log(bounds);
   });
 }

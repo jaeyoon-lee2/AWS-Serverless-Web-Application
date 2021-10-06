@@ -1,4 +1,26 @@
 
+var myModal = document.getElementById("myModal");
+
+var btn = document.getElementById("addEventBtn");
+
+var closeBtn = document.getElementById("close");
+
+btn.onclick = function() {
+  myModal.style.display = "block";
+  initEventForm()
+}
+
+closeBtn.onclick = function() {
+  myModal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == myModal) {
+    myModal.style.display = "none";
+  }
+}
+
+
 function editEvent() {
   alert("EDIT WINDOW");
 }
@@ -13,7 +35,7 @@ function genInfoWindow(info, map) {
   const contentString =
     '<div style="padding: 5%;">' +
       '<div style="display: flex; justify-content: space-between;">' +
-        '<h1 id="title" style="margin: 0 0 12px; text-align: left;">' + info.eventName + '</h1>' +
+        '<h2 id="title" style="margin: 0 0 12px; text-align: left;">' + info.eventName + '</h2>' +
         '<button class="mdl-button mdl-js-button mdl-button--primary" onclick="editEvent()">Edit</button>' +
       "</div>" +
       "<div>" +
@@ -43,7 +65,7 @@ function genInfoWindow(info, map) {
 }
 
 
-function initMap() {
+function initAutocomplete() {
   const map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 45.397545, lng: -75.689046},
     zoom: 12,
@@ -84,7 +106,7 @@ function initMap() {
   genInfoWindow(eventInfo[0], map);
   
   // const addBtnDiv = document.createElement("div");
-  const addEventBtn = document.getElementById("add-event");
+  const addEventBtn = document.getElementById("addEventBtn");
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(addEventBtn);
   
   // addBtnDiv.appendChild(addEventBtn);
