@@ -6,8 +6,8 @@ async function getUser(email_address) {
     const api_url = 'https://2mff6xrn79.execute-api.us-east-1.amazonaws.com/prod/user_profile?user_email=' + email_address;
     const api_response = await fetch(api_url);
     const api_data = await(api_response).json();
-    console.log(api_data);
-    console.log(email_address);
+    // console.log(api_data);
+    // console.log(email_address);
 
     const json_profile = JSON.parse(api_data['body']);
     const div_user_profile_email = document.getElementById('profile_email');
@@ -39,7 +39,7 @@ function getUserAttributes() {
           return;
         }
         // user email address
-        console.log(result);
+        // console.log(result);
         getUser(result[3].getValue())
       });
 

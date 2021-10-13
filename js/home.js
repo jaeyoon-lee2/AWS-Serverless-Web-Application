@@ -7,6 +7,7 @@ var closeBtn = document.getElementById("close");
 
 btn.onclick = function() {
   myModal.style.display = "block";
+  document.getElementById("addButton").innerHTML = "Add";
   initEventForm()
 }
 
@@ -20,9 +21,15 @@ window.onclick = function(event) {
   }
 }
 
+function applyEvent() {
+  console.log(document.getElementById("event-time").value);
+}
 
 function editEvent() {
-  alert("EDIT WINDOW");
+  // alert("EDIT WINDOW");
+  myModal.style.display = "block";
+  document.getElementById("addButton").innerHTML = "Edit";
+  initEventForm()
 }
 
 
