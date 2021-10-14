@@ -1,13 +1,21 @@
-function initEventForm() {
+function initEventForm(eventInformation = {
+    eventLoc: {},
+    eventName: "",
+    date: "",
+    time: "",
+    note: ""
+  
+  }) {
   const map = new google.maps.Map(document.getElementById("formMap"), {
-    center: { lat: 45.397545, lng: -75.689046},
+    center: {lat: 45.397545, lng: -75.689046},
     zoom: 12,
     mapId: '8b356f861117194c',
     disableDefaultUI: true,
   });
   // Create the search box and link it to the UI element.
-  const input = document.getElementById("pac-input");
-  const searchBox = new google.maps.places.SearchBox(input);
+  const inputLoction = document.getElementById("location_input");
+  const searchBox = new google.maps.places.SearchBox(inputLoction);
+  const button = document.getElementById("addButton");
 
   // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
   // Bias the SearchBox results towards current map's viewport.
