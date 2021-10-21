@@ -26,7 +26,7 @@
   <body>
     <div class="protile_container">
       <div class="edit-btn-box">
-        <button class="edit_btn">Edit Profile</button>
+        <button class="edit_btn" id="edit_profile">Edit Profile</button>
       </div>
       <div class="profile_card">
         <div class="image-box">
@@ -40,6 +40,29 @@
     </div>
 		<div>
 		  
+		</div>
+		
+    <div id="edit_profile_modal" class="edit-modal">
+      <div class="edit-modal-content">
+        <div class="top_btns edit_div">
+          <button class="mdl-button mdl-js-button mdl-button--primary" id="edit_close">Cancel</button>
+          <button class="mdl-button mdl-js-button mdl-button--primary" id="done" onclick="applyChanges();">Done</button>
+        </div>
+        <div class="profile_photo_change edit_div">
+          <div class="profile_image_box" style="display: inline-block;">
+            <img id="profile_image" src="https://cdn.pixabay.com/photo/2020/11/29/04/02/hand-5786371_960_720.jpg">
+          </div>
+          <button class="mdl-button mdl-js-button mdl-button--primary" id="change_photo" style="font-size: small" onclick="applyChanges();">Change Profile Photo</button>
+        </div>
+        <div class="change_name">
+          <form action="#">
+            <div class="mdl-textfield mdl-js-textfield">
+              <label for="change_name" style="font-size: small; color: grey;">Name</label>
+              <input class="mdl-textfield__input" type="text" id="change_name">
+            </div>
+          </form>
+        </div>
+      </div>
 		</div>
   </body>
 

@@ -1,4 +1,6 @@
 
+
+
 var myModal = document.getElementById("myModal");
 
 var btn = document.getElementById("addEventBtn");
@@ -19,17 +21,6 @@ window.onclick = function(event) {
   if (event.target == myModal) {
     myModal.style.display = "none";
   }
-}
-
-function applyEvent() {
-  console.log(document.getElementById("event-time").value);
-}
-
-function editEvent() {
-  // alert("EDIT WINDOW");
-  myModal.style.display = "block";
-  document.getElementById("addButton").innerHTML = "Edit";
-  initEventForm()
 }
 
 

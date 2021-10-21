@@ -1,4 +1,22 @@
-// JavaScript File
+var editModal = document.getElementById("edit_profile_modal");
+
+var editProfileBtn = document.getElementById("edit_profile");
+
+var editCloseBtn = document.getElementById("edit_close");
+
+editProfileBtn.onclick = function() {
+  editModal.style.display = "block";
+}
+
+editCloseBtn.onclick = function() {
+  editModal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == editModal) {
+    editModal.style.display = "none";
+  }
+}
 
 async function getUser(email_address) {
     // get the user info from API Gate
