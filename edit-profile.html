@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <!--Google's MDL-->
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-green.min.css" />
+      <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+      
+      <link rel="stylesheet" type="text/css" href="./css/profile.css" />
+        <title> </title>
+    </head>
+    <body>
+      <div class="modal-content">
+        <div class="top_btns edit_div">
+          <button class="mdl-button mdl-js-button mdl-button--primary" id="close">Cancel</button>
+          <button class="mdl-button mdl-js-button mdl-button--primary" id="done" onclick="applyChanges();">Done</button>
+        </div>
+        <div class="profile_photo_change edit_div">
+          <div class="profile_image_box" style="display: inline-block;">
+            <img id="profile_image" src="https://cdn.pixabay.com/photo/2020/11/29/04/02/hand-5786371_960_720.jpg">
+          </div>
+          <button class="mdl-button mdl-js-button mdl-button--primary" id="change_photo" onclick="applyChanges();">Change Profile Photo</button>
+        </div>
+        <div class="change_name">
+          <form action="#">
+            <div class="mdl-textfield mdl-js-textfield">
+              <label for="change_name" style="font-size: small; color: grey;">Name</label>
+              <input class="mdl-textfield__input" type="text" id="change_name">
+            </div>
+          </form>
+        </div>
+      </div>
+    </body>
+</html>

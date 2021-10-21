@@ -1,3 +1,52 @@
+function switchAllDay() {
+  var checkBox = document.getElementById("switch");
+  var eventTime = document.getElementById("event-time");
+  
+  if (checkBox.checked == true) {
+    eventTime.type = "date";
+  } else {
+    eventTime.type = "datetime-local";
+  }
+}
+
+
+function applyEvent() {
+  var params = {};
+
+  var body = {
+    "email": "jaeyoon.lee@mths.ca",
+    "event_key": 5,
+    "date": document.getElementById("event-time").value,
+    "location": {
+      "lat": 45.2786222,
+      "lng": -75.7390968
+    },
+    "title": document.getElementById("title").value,
+    "note": document.getElementById("note").value
+  }
+  
+  var apigClient = apigClientFactory.newClient({
+    apiKey: 'tXyMNOlHXw3Ojdlzli9uw9FvlGhbwY21bD0f6vdh'
+  });
+
+  
+  apigClient.eventManagerPost(params, body)
+      .then(function(result){
+        console.log("success");
+        console.log(result)
+      }).catch( function(result){
+        console.log("fail");
+        console.log(result)
+      });
+}
+
+function editEvent() {
+  // alert("EDIT WINDOW");
+  myModal.style.display = "block";
+  document.getElementById("addButton").innerHTML = "Edit";
+  initEventForm()
+}
+
 function initEventForm(eventInformation = {
     eventLoc: {},
     eventName: "",
@@ -56,6 +105,8 @@ function initEventForm(eventInformation = {
         anchor: new google.maps.Point(17, 34),
         scaledSize: new google.maps.Size(25, 25),
       };
+      
+      // console.log(place.geometry.location);
 
       // Create a marker for each place.
       markers.push(

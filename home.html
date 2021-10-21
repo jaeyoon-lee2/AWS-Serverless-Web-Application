@@ -49,14 +49,19 @@
       <form action="#">
         <div class="mdl-textfield mdl-js-textfield">
           <input class="controls mdl-textfield__input" type="text" id="location_input" placeholder="Search place">
-          <label class="mdl-textfield__label" for=location_input>Search place</label>
+          <!--<label class="mdl-textfield__label" for=location_input>Search place</label>-->
         </div>
       </form>
 
       <div id="formMap"></div>
 
-      <input class="date" type="datetime-local" id="event-time" name="time" value="2021-10-01T19:30"
+      <input class="date" type="datetime-local" id="event-time" name="time"
         min="0001-01-01T00:00" max="3000-12-131T00:00">
+      
+      <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch">
+        <input type="checkbox" id="switch" class="mdl-switch__input" onclick="switchAllDay()">
+        <span class="mdl-switch__label">All-day</span>
+      </label>
 
       <form action="#">
         <div class="mdl-textfield mdl-js-textfield">

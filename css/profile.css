@@ -66,5 +66,63 @@
   font-size: smaller;
 }
 
-/*.email {*/
-/*}*/
+.edit-modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  /*overflow-y: hidden;*/
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.edit-modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  margin-top: 124px;
+  padding: 0 5%;
+  border: 1px solid #888;
+  max-width: 48vh;
+  min-width: 256px;
+}
+
+.edit-modal::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+
+.top_btns {
+  /*border-bottom: 1px solid grey;*/
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile_image_box {
+  display: inline-block;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 5%;
+}
+.profile_image_box img {
+  width: 100%;
+  height: 100%;
+}
+
+.edit_div {
+  margin: 5px 0;
+  border-bottom: 1px solid #cacaca;
+}
+
+.profile_photo_change {
+  text-align: center;
+}
+
+input:focus {
+  border-color: #2196f3
+}
