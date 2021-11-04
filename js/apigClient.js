@@ -22,7 +22,7 @@ apigClientFactory.newClient = function (config) {
             secretKey: '',
             sessionToken: '',
             region: '',
-            apiKey: undefined,
+            apiKey: 'tXyMNOlHXw3Ojdlzli9uw9FvlGhbwY21bD0f6vdh',
             defaultContentType: 'application/json',
             defaultAcceptType: 'application/json'
         };
@@ -83,8 +83,44 @@ apigClientFactory.newClient = function (config) {
     
     
     
-    apigClient.eventManagerPost = function (params, body) {
-        var additionalParams = {};
+    apigClient.eventManagerGet = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var eventManagerGetRequest = {
+            verb: 'get'.toUpperCase(),
+            path: pathComponent + uritemplate('/event_manager').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(eventManagerGetRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.eventManagerPut = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var eventManagerPutRequest = {
+            verb: 'put'.toUpperCase(),
+            path: pathComponent + uritemplate('/event_manager').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(eventManagerPutRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.eventManagerPost = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
         
         apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
         
@@ -98,6 +134,24 @@ apigClientFactory.newClient = function (config) {
         
         
         return apiGatewayClient.makeRequest(eventManagerPostRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.eventManagerDelete = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var eventManagerDeleteRequest = {
+            verb: 'delete'.toUpperCase(),
+            path: pathComponent + uritemplate('/event_manager').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(eventManagerDeleteRequest, authType, additionalParams, config.apiKey);
     };
     
     
