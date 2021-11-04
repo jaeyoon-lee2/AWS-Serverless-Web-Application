@@ -84,7 +84,7 @@
 .edit-modal-content {
   background-color: #fefefe;
   margin: 10% auto;
-  margin-top: 124px;
+  margin-top: 112px;
   padding: 0 5%;
   border: 1px solid #888;
   max-width: 48vh;
@@ -107,7 +107,7 @@
   height: 96px;
   border-radius: 50%;
   overflow: hidden;
-  margin-right: 5%;
+  /*margin-right: 5%;*/
 }
 .profile_image_box img {
   width: 100%;
@@ -121,6 +121,7 @@
 
 .profile_photo_change {
   text-align: center;
+  width: 100%;
 }
 
 input:focus {

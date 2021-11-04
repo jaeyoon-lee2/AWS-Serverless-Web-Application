@@ -28,6 +28,34 @@ function displayOnMaps() {
   
 }
 
+function getEvents(email_address){
+  var apigClient = apigClientFactory.newClient();
+  
+  var params = {};
+  var body = {}
+  
+  var additionalParams = {
+    queryParams: {
+      email:'jaeyoon.lee@mths.ca'
+    }
+  };
+  
+  
+
+  
+  apigClient.eventManagerGet(params, body, additionalParams)
+      .then(function(result){
+        console.log("success");
+        console.log(result)
+        // return result
+      }).catch( function(result){
+        console.log("fail");
+        console.log(result)
+      });
+  
+  // genInfoWindow(, map);
+}
+
 
 function genInfoWindow(info, map) {
   const contentString =
@@ -64,6 +92,38 @@ function genInfoWindow(info, map) {
 
 
 function initAutocomplete() {
+  getEvents("")
+  // var data = {
+  //   UserPoolId : _config.cognito.userPoolId,
+  //   ClientId : _config.cognito.clientId
+  // };
+  // var userPool = new AmazonCognitoIdentity.CognitoUserPool(data);
+  // var cognitoUser = userPool.getCurrentUser();
+
+  // // var eventInfo = [];
+  
+  // if (cognitoUser != null) {
+  //   cognitoUser.getSession(function(err, session) {
+  //     if (err) {
+  //       alert(err);
+  //       return;
+  //     }
+  //     //console.log('session validity: ' + session.isValid());
+
+  //     cognitoUser.getUserAttributes(function(err, result) {
+  //       if (err) {
+  //         console.log(err);
+  //         return;
+  //       }
+  //       // user email address
+  //       // console.log(result);
+  //       getEvents(result[3].getValue())
+  //     });
+
+  //   });
+  // } else {
+  //   console.log("Already signed-out")
+  // }
   const map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 45.397545, lng: -75.689046},
     zoom: 12,
@@ -94,14 +154,14 @@ function initAutocomplete() {
     alert("Location information is unavailable.")
   }
   
-  const eventInfo = [{
-    eventLoc: { lat: 45.28503536817652, lng: -75.73935745395954},
-    eventName: "TITLE",
-    date: "Oct 4, 2021",
-    time: "12:34 PM",
-    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae lacus ac augue auctor hendrerit. Ut imperdiet mattis scelerisque. Curabitur vitae."
-  }];
-  genInfoWindow(eventInfo[0], map);
+  // const eventInfo = [{
+  //   eventLoc: { lat: 45.28503536817652, lng: -75.73935745395954},
+  //   eventName: "TITLE",
+  //   date: "Oct 4, 2021",
+  //   time: "12:34 PM",
+  //   note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae lacus ac augue auctor hendrerit. Ut imperdiet mattis scelerisque. Curabitur vitae."
+  // }];
+  // genInfoWindow(eventInfo[0], map);
   
   // const addBtnDiv = document.createElement("div");
   const addEventBtn = document.getElementById("addEventBtn");
@@ -111,3 +171,4 @@ function initAutocomplete() {
   
   
 }
+

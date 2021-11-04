@@ -18,6 +18,13 @@ window.onclick = function(event) {
   }
 }
 
+
+function getProfilePhoto() {
+  
+}
+
+
+
 async function getUser(email_address) {
     // get the user info from API Gate
 
