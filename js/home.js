@@ -1,5 +1,5 @@
 
-
+var numberOfMarkers = 0;
 
 var myModal = document.getElementById("myModal");
 
@@ -28,7 +28,7 @@ function displayOnMaps() {
   
 }
 
-function getEvents(email_address){
+function getEvents(email_address, map){
   var apigClient = apigClientFactory.newClient();
   
   var params = {};
@@ -36,38 +36,47 @@ function getEvents(email_address){
   
   var additionalParams = {
     queryParams: {
-      email:'jaeyoon.lee@mths.ca'
+      email:email_address
     }
   };
-  
-  
 
   
   apigClient.eventManagerGet(params, body, additionalParams)
       .then(function(result){
         console.log("success");
-        console.log(result)
-        // return result
+        // console.log(result.data.body);
+        var markers = new Array();
+        for (var eventInfo of JSON.parse(result.data.body)) {
+          console.log(eventInfo);
+          markers.push(genInfoWindow(eventInfo, map));
+        };
+        numberOfMarkers = markers.length;
+        console.log(numberOfMarkers);
       }).catch( function(result){
         console.log("fail");
-        console.log(result)
+        console.log(result);
       });
-  
-  // genInfoWindow(, map);
+      
+    
+    console.log(numberOfMarkers);
 }
 
 
 function genInfoWindow(info, map) {
+  var note = '<p style="margin-top: 16px;">' + info.note + '</p>';
+  if (info.note === undefined) {
+    note = "";
+  }
   const contentString =
     '<div style="padding: 5%;">' +
       '<div style="display: flex; justify-content: space-between;">' +
-        '<h2 id="title" style="margin: 0 0 12px; text-align: left;">' + info.eventName + '</h2>' +
+        '<h2 id="title" style="margin: 0 0 12px; text-align: left;">' + info.title + '</h2>' +
         '<button class="mdl-button mdl-js-button mdl-button--primary" onclick="editEvent()">Edit</button>' +
       "</div>" +
       "<div>" +
-        '<p style="margin-bottom: 0;">' + info.date + '</p>' +
-        '<p style="margin-bottom: 0;">' + info.time + '</p>' +
-        '<p style="margin-top: 16px;">' + info.note + '</p>' +
+        '<p style="margin-bottom: 0;">' + info.event_date + '</p>' +
+        // '<p style="margin-bottom: 0;">' + info.time + '</p>' +
+        note +
       "</div>" +
     "</div>";
     
@@ -76,7 +85,7 @@ function genInfoWindow(info, map) {
   });
   
   const custonMarker = new google.maps.Marker({
-    position: info.eventLoc,
+    position: info.loc,
     map,
     // title: "Your event",
   });
@@ -88,42 +97,13 @@ function genInfoWindow(info, map) {
       shouldFocus: false,
     });
   });
+  
+  return custonMarker;
 }
 
 
 function initAutocomplete() {
-  getEvents("")
-  // var data = {
-  //   UserPoolId : _config.cognito.userPoolId,
-  //   ClientId : _config.cognito.clientId
-  // };
-  // var userPool = new AmazonCognitoIdentity.CognitoUserPool(data);
-  // var cognitoUser = userPool.getCurrentUser();
-
-  // // var eventInfo = [];
-  
-  // if (cognitoUser != null) {
-  //   cognitoUser.getSession(function(err, session) {
-  //     if (err) {
-  //       alert(err);
-  //       return;
-  //     }
-  //     //console.log('session validity: ' + session.isValid());
-
-  //     cognitoUser.getUserAttributes(function(err, result) {
-  //       if (err) {
-  //         console.log(err);
-  //         return;
-  //       }
-  //       // user email address
-  //       // console.log(result);
-  //       getEvents(result[3].getValue())
-  //     });
-
-  //   });
-  // } else {
-  //   console.log("Already signed-out")
-  // }
+  var eventInfo = [];
   const map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 45.397545, lng: -75.689046},
     zoom: 12,
@@ -152,6 +132,38 @@ function initAutocomplete() {
   } else {
     // Browser doesn't support Geolocation
     alert("Location information is unavailable.")
+  }
+  
+  var data = {
+    UserPoolId : _config.cognito.userPoolId,
+    ClientId : _config.cognito.clientId
+  };
+  var userPool = new AmazonCognitoIdentity.CognitoUserPool(data);
+  var cognitoUser = userPool.getCurrentUser();
+
+  
+  if (cognitoUser != null) {
+    cognitoUser.getSession(function(err, session) {
+      if (err) {
+        alert(err);
+        return;
+      }
+      //console.log('session validity: ' + session.isValid());
+
+      cognitoUser.getUserAttributes(function(err, result) {
+        if (err) {
+          console.log(err);
+          return;
+        }
+        // user email address
+        // console.log("result: ", result);
+        eventInfo = getEvents(result[3].getValue(),map);
+        console.log("eventInfo",eventInfo);
+      });
+
+    });
+  } else {
+    console.log("Already signed-out")
   }
   
   // const eventInfo = [{

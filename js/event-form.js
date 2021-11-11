@@ -15,7 +15,7 @@ function applyEvent() {
 
   var body = {
     "email": "jaeyoon.lee@mths.ca",
-    "event_key": 5,
+    "event_key": numberOfMarkers + 1,
     "date": document.getElementById("event-time").value,
     "location": {
       "lat": 45.2786222,
