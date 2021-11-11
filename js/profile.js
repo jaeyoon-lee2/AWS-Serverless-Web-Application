@@ -39,7 +39,7 @@ async function getUser(email_address) {
     const div_user_profile_name = document.getElementById('profile_name');
     
     div_user_profile_email.innerHTML = json_profile['email'];
-    div_user_profile_name.innerHTML = json_profile['name'];
+    div_user_profile_name.innerHTML = json_profile['user_name'];
   }
 
 function getUserAttributes() {
